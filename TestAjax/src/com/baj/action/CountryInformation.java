@@ -2,17 +2,13 @@ package com.baj.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import javax.naming.Context;
-import javax.naming.InitialContext;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -64,9 +60,10 @@ out.close();
 }
 
 //Get Country Information
-private Country getInfo(String countryCode) {
+private List<Country> getInfo(String countryCode) {
 	
 	Country country = new Country();
+	List<Country> countryList = new ArrayList<Country>();
 	country.setCode("01");
 	country.setName("INDIA");
 	country.setRegion("CENTRAL");
