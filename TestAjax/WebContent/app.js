@@ -16,24 +16,35 @@ dataString = "countryCode=" + countryCode;
 
 //make the AJAX request, dataType is set to json
 //meaning we are expecting JSON data in response from the server
+$.ajaxSetup({cache: false});
 $.ajax({
 type: "POST",
 url: "CountryInformation",
 data: dataString,
 dataType: "json",
+cache: false,
+headers: {
+    'Cache-Control': 'no-cache, no-store, must-revalidate', 
+    'Pragma': 'no-cache', 
+    'Expires': '0'
+  },
 
 //if received a response from the server
 success: function( data, textStatus, jqXHR) {
 //our country code was correct so we have some information to display
 if(data.success){
+	console.log(data);
+	var i;
+	for(i=0; i<data.countryInfo.size;i++){
 $("#ajaxResponse").html("");
-$("#ajaxResponse").append("<b>Country Code:</b> " + data.countryInfo.code + "");
-$("#ajaxResponse").append("<b>Country Name:</b> " + data.countryInfo.name + "");
-$("#ajaxResponse").append("<b>Continent:</b> " + data.countryInfo.continent + "");
-$("#ajaxResponse").append("<b>Region:</b> " + data.countryInfo.region + "");
-$("#ajaxResponse").append("<b>Life Expectancy:</b> " + data.countryInfo.lifeExpectancy + "");
-$("#ajaxResponse").append("<b>GNP:</b> " + data.countryInfo.gnp + "");
+$("#ajaxResponse").append("<b>Country Code:</b> " + data.countryInfo[i].code + "");
+$("#ajaxResponse").append("<b>Country Name:</b> " + data.countryInfo[i].name + "");
+$("#ajaxResponse").append("<b>Continent:</b> " + data.countryInfo[i].continent + "");
+$("#ajaxResponse").append("<b>Region:</b> " + data.countryInfo[i].region + "");
+$("#ajaxResponse").append("<b>Life Expectancy:</b> " + data.countryInfo[i].lifeExpectancy + "");
+$("#ajaxResponse").append("<b>GNP:</b> " + data.countryInfo[i].gnp + "");
 } 
+}
 //display error message
 else {
 $("#ajaxResponse").html("<div><b>Country code in Invalid!</b></div>");

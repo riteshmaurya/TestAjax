@@ -29,12 +29,13 @@ doPost(request,response);
 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 String countryCode = request.getParameter("countryCode");
-
+System.out.println(countryCode);
+System.out.println("sssss");
 PrintWriter out = response.getWriter();
 response.setContentType("text/html");
-response.setHeader("Cache-control", "no-cache, no-store");
+response.setHeader("Cache-control", "no-cache");
 response.setHeader("Pragma", "no-cache");
-response.setHeader("Expires", "-1");
+response.setHeader("Expires", "0");
 
 response.setHeader("Access-Control-Allow-Origin", "*");
 response.setHeader("Access-Control-Allow-Methods", "POST");
@@ -44,9 +45,9 @@ response.setHeader("Access-Control-Max-Age", "86400");
 Gson gson = new Gson(); 
 JsonObject myObj = new JsonObject();
 
-Country countryInfo = getInfo(countryCode);
+List<Country> countryInfo = getInfo(countryCode);
 JsonElement countryObj = gson.toJsonTree(countryInfo);
-if(countryInfo.getName() == null){
+if(countryInfo == null){
 myObj.addProperty("success", false);
 }
 else {
@@ -54,30 +55,57 @@ myObj.addProperty("success", true);
 }
 myObj.add("countryInfo", countryObj);
 out.println(myObj.toString());
-
+System.out.println(myObj.toString());
 out.close();
 
 }
 
 //Get Country Information
 private List<Country> getInfo(String countryCode) {
-	
-	Country country = new Country();
 	List<Country> countryList = new ArrayList<Country>();
+	
+	/*Country country = new Country();
 	country.setCode("01");
 	country.setName("INDIA");
 	country.setRegion("CENTRAL");
 	country.setContinent("ASIA");
 	country.setGnp(100000.00);
 	country.setLifeExpectancy(85.6);
+	countryList.add(country);
+	*/
+	Country country2 = new Country();
+	country2.setCode("01");
+	country2.setName("INDIAaaa");
+	country2.setRegion("CENTRALaaaa");
+	country2.setContinent("ASIAaaaa");
+	country2.setGnp(100000.00);
+	country2.setLifeExpectancy(85.6);
+	countryList.add(country2);
 	
+	Country country3 = new Country();
+	country3.setCode("01");
+	country3.setName("INDIAbbbb");
+	country3.setRegion("CENTRALbbbb");
+	country3.setContinent("ASIAbbbb");
+	country3.setGnp(100000.00);
+	country3.setLifeExpectancy(85.6);
+	countryList.add(country3);
+	
+	Country country4 = new Country();
+	country4.setCode("01");
+	country4.setName("INDIAcccc");
+	country4.setRegion("CENTRALcccc");
+	country4.setContinent("ASIAccccc");
+	country4.setGnp(100000.00);
+	country4.setLifeExpectancy(85.6);
+	countryList.add(country4);
 	/*if(country.getCode().equals(countryCode)){
 		return country;
 	}
 		else {
 			return country;
 		}*/
-	return country;
+	return countryList;
 	}
 	
 	
