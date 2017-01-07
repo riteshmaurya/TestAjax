@@ -37,17 +37,16 @@ if(data.success){
 	var $table = $("<table id='tbl1' class='ct-active' border='medium'>").appendTo($("#somediv"));
 	$.each(data.countryInfo, function(index, countryInfo){
 		$("<tr>").appendTo($table)
-		.append($("<td>").text(countryInfo.code))      
-        .append($("<td>").text(countryInfo.name))
-        .append($("<td>").text(countryInfo.continent))
-        .append($("<td>").text(countryInfo.region))
-        .append($("<td>").text(countryInfo.lifeExpectancy))
-		.append($("<td>").text(countryInfo.gnp));
+		.append($("<td>").text(countryInfo.C_NAME))      
+        .append($("<td>").text(countryInfo.C_CODE))
+        .append($("<td>").text(countryInfo.SERIAL_NO));
+       
+		
 	});
 	
 	var $dropDownList = $("<select id='select1' onchange='showContinent(this.value)' class='ct-active' border='medium'>").appendTo($("#dropDownList"));
 	$.each(data.countryInfo, function(index, countryInfo){
-		$("<option>").appendTo($dropDownList).text(countryInfo.name);
+		$("<option>").appendTo($dropDownList).text(countryInfo.C_NAME);
 	});
 }
 //display error message
@@ -129,7 +128,10 @@ function showContinent(value){
 		$(".select2").remove();
 		var $dropDownList2 = $("<select id='select2' class='select2'>").appendTo($("#dropDownList2"));
 		$.each(data.countryInfo, function(index, countryInfo){
-			$("<option>").appendTo($dropDownList2).text(countryInfo.continent);
+			$("<option>").appendTo($dropDownList2).text(countryInfo.C_NAME);
+			console.log(countryInfo.C_NAME);
+			console.log(countryInfo.C_CODE);
+			
 		});
 	}
 	//display error message

@@ -1,7 +1,5 @@
 
-
-<html>
-<head>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>${responseBody}
     <title>jQuery Ajax POST data Request and Response Example</title>
  
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
@@ -15,7 +13,6 @@
 border: medium;
 }
 </style> 
-</head>
 <body>
  
     <form id="myAjaxRequestForm">
@@ -45,5 +42,5 @@ border: medium;
     <br>
     <br>
     <div id="dropDownList2"></div>
-</body>
-</html>
+      
+ 
